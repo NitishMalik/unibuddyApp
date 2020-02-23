@@ -22,3 +22,5 @@ export const getTitleBySearchString = (searchQuery, noOfOptions) => {
   const searchResults = SearchSummary(searchQuery, noOfOptions);
   return getTitle(searchResults);
 };
+
+export { getTitleBySearchString as GetTitleBySearchString };

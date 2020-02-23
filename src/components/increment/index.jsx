@@ -1,11 +1,7 @@
 import React from "react";
 import "./styles.scss";
 
-const IncrementControl = ({
-  incrementNumber,
-  decrementNumber,
-  noOfOptions
-}) => (
+const Increment = ({ incrementNumber, decrementNumber, noOfOptions }) => (
   <div className="increment-control">
     <input
       value={noOfOptions}

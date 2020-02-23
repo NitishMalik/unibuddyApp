@@ -1,5 +1,7 @@
 import React from "react";
 import "./styles.scss";
+import Book from "../book";
+import { connect } from "react-redux";
 
 const BooksList = ({ books }) => (
   <div className="booklist-container">

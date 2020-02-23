@@ -2,7 +2,10 @@ import React from "react";
 import "./styles.scss";
 import AutoComplete from "../../components/autocomplete";
 import Increment from "../../components/increment";
+import { getOptions } from "../../redux/search/searchActions";
+import { addBook } from "../../redux/book/bookActions";
 import { connect } from "react-redux";
+import { selectSearchOptions } from "../../redux/search/searchSelector";
 
 class Search extends React.Component {
   state = {
@@ -11,7 +14,7 @@ class Search extends React.Component {
     selectedOption: null,
     clearForm: false
   };
-  handleOnSubmit = () => {
+  handleOnSubmit = event => {
     event.preventDefault();
     this.props.addBook(this.state.selectedOption.id);
     this.setState({ clearForm: true });
