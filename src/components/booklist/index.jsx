@@ -1,9 +1,13 @@
 import React from "react";
 import "./styles.scss";
 
-const BookList = ({ books }) => (
-  <div className="search-container">
-    <p> BookList Component</p>
+const BooksList = ({ books }) => (
+  <div className="booklist-container">
+    {books && books.length > 0 ? (
+      books.map(({ id, ...otherProps }) => <Book key={id} {...otherProps} />)
+    ) : (
+      <p> No Books </p>
+    )}
   </div>
 );
 
