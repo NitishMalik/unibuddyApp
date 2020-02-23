@@ -11,4 +11,8 @@ const BooksList = ({ books }) => (
   </div>
 );
 
-export default BookList;
+const mapStateToProps = ({ book }) => ({
+  books: book.books
+});
+
+export default connect(mapStateToProps)(BooksList);

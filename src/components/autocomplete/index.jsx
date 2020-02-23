@@ -61,13 +61,20 @@ class AutoComplete extends React.Component {
     }
   };
 
-  handleOnBlur = event => {
-    this.setState({ showOptions: false });
-  };
-
-  componentDidMount() {
-    this.searchBox.current.focus();
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.clearForm != this.props.clearForm && nextProps.clearForm) {
+      this.setState({ inputVal: "" });
+    }
+    return true;
   }
+
+  //   handleOnBlur = event => {
+  //     this.setState({ showOptions: false });
+  //   };
+
+  //   componentDidMount() {
+  //     this.searchBox.current.focus();
+  //   }
 
   loadOptions = () => {
     let optionList;

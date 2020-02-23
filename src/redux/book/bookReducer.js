@@ -1,5 +1,5 @@
 import BookActionTypes from "./bookActionTypes";
-import { GetBookData } from "../../util/bookUtil";
+import { GetBookData } from "../../util/book";
 const INITIAL_STATE = {
   books: []
 };

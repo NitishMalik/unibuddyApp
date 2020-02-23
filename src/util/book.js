@@ -1,5 +1,5 @@
 import { data as globalData } from "./data";
-import { getTitleById } from "./titleUtil";
+import { getTitleById } from "./title";
 
 const getBookData = id => {
   //get author

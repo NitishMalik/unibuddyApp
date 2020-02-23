@@ -1,5 +1,5 @@
 import SearchActionTypes from "./searchActionTypes";
-import { GetTitleBySearchString } from "../../util/titleUtil";
+import { GetTitleBySearchString } from "../../util/title";
 const INITIAL_STATE = {
   query: "",
   numberOfOptions: -1,

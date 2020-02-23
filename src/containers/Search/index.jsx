@@ -2,15 +2,19 @@ import React from "react";
 import "./styles.scss";
 import AutoComplete from "../../components/autocomplete";
 import Increment from "../../components/increment";
+import { connect } from "react-redux";
 
 class Search extends React.Component {
   state = {
     noOfOptions: 3,
     searchQuery: "",
-    selectedOption: null
+    selectedOption: null,
+    clearForm: false
   };
   handleOnSubmit = () => {
+    event.preventDefault();
     this.props.addBook(this.state.selectedOption.id);
+    this.setState({ clearForm: true });
   };
 
   setSearchQuery = inputValue => {
@@ -37,12 +41,12 @@ class Search extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleOnSubmit} className="form-container">
-        <IncrementControl
+        <Increment
           incrementNumber={this.incrementNumber}
           decrementNumber={this.decrementNumber}
           noOfOptions={this.state.noOfOptions}
         />
-        <AutoCompleteSearchBox
+        <AutoComplete
           setSearchQuery={this.setSearchQuery}
           options={this.props.options}
           getSelectedOption={this.getSelectedOption}
@@ -53,4 +57,14 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+const mapStateToProps = state => ({
+  options: selectSearchOptions(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  getOptions: (query, numbOfResults) =>
+    dispatch(getOptions(query, numbOfResults)),
+  addBook: id => dispatch(addBook(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

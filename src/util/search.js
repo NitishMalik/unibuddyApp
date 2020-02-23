@@ -1,6 +1,6 @@
 import { data as globalData } from "./data";
-const localCache = {};
-const splitStreamArray = [];
+let localCache = {};
+let splitStreamArray = [];
 
 function splitDataIntoStreamsOfSize(globalDataArray, streamSize) {
   let globalDataArrayCopy = [...globalDataArray];

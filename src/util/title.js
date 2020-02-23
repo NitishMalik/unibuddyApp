@@ -1,4 +1,4 @@
-import { SearchSummary } from "./searchUtil";
+import { SearchSummary } from "./search";
 import { data as globalData } from "./data";
 
 export const getTitleById = id => {
