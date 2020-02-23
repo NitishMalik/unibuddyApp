@@ -23,15 +23,42 @@ class AutoComplete extends React.Component {
     const input = event.target.value.trim();
     this.setState({ inputVal: input, showOptions: true });
 
-    // call redux action
+    if (input.length % 3 === 0) {
+      this.props.setSearchQuery(input);
+    }
   };
 
-  handleOnClick = event => {
-    // to be implemented
+  handleOnClick = option => {
+    console.log(option);
+    this.setState({
+      selectedIndex: 0,
+      filteredOptions: [],
+      inputVal: option.title,
+      showOptions: false
+    });
+    this.props.getSelectedOption(option);
   };
 
   handleKeyDown = e => {
-    // to be implemented
+    const { selectedIndex, filteredOptions } = this.state;
+
+    if (e.keyCode === 13) {
+      this.setState({
+        selectedIndex: 0,
+        inputVal: filteredOptions[selectedIndex]
+      });
+    } else if (e.keyCode === 38) {
+      if (selectedIndex === 0) {
+        return;
+      }
+      this.setState({ selectedIndex: selectedIndex - 1 });
+    } else if (e.keyCode === 40) {
+      if (selectedIndex === filteredOptions.length - 1) {
+        console.log(selectedIndex);
+        return;
+      }
+      this.setState({ selectedIndex: selectedIndex + 1 });
+    }
   };
 
   handleOnBlur = event => {
@@ -42,27 +69,25 @@ class AutoComplete extends React.Component {
     this.searchBox.current.focus();
   }
 
-  render() {
-    const { inputVal, showOptions } = this.state;
+  loadOptions = () => {
+    let optionList;
     const { options } = this.props;
     if (options && options.length > 0) {
       optionList = (
         <div className="options-dropdown">
-          {options.map((option, index) => {
-            return (
-              <div
-                className={
-                  index === this.state.selectedIndex
-                    ? "option-active option"
-                    : "option"
-                }
-                key={index}
-                onClick={this.handleOnClick}
-              >
-                {option.title}
-              </div>
-            );
-          })}
+          {options.map((option, index) => (
+            <div
+              key={index}
+              className={
+                index === this.state.selectedIndex
+                  ? "option-active option"
+                  : "option"
+              }
+              onClick={() => this.handleOnClick(option)}
+            >
+              {option.title}
+            </div>
+          ))}
         </div>
       );
     } else {
@@ -70,6 +95,12 @@ class AutoComplete extends React.Component {
         <div className="no-options options-dropdown">No Options !!</div>
       );
     }
+    return optionList;
+  };
+
+  render() {
+    const { inputVal, showOptions } = this.state;
+    let optionList = this.loadOptions();
     return (
       <div className="autocomplete-searchbox">
         <input
@@ -78,7 +109,6 @@ class AutoComplete extends React.Component {
           onChange={this.handleOnChange}
           onKeyDown={this.handleKeyDown}
           value={inputVal}
-          onBlur={this.handleOnBlur}
           ref={this.searchBox}
           placeholder="input search eg. Don"
         />

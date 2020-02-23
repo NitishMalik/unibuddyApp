@@ -1,0 +1,15 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .search-btn {
+    margin: 10px;
+    height: 100%;
+    padding: 8px 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    &:hover {
+      background-color: lightgray;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.increment-control {
+  display: flex;
+  min-height: 20px;
+  position: relative;
+  margin: 10px;
+  .arrow {
+    cursor: pointer;
+    display: flex;
+    position: absolute;
+    width: 20px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    &.increment {
+      right: 20px;
+    }
+    &.decrement {
+      right: 0px;
+    }
+    &:hover {
+      background-color: lightgray;
+    }
+  }
+  .value {
+    width: 60px;
+  }
+}

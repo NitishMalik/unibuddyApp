@@ -1,0 +1,24 @@
+.autocomplete-searchbox {
+  position: relative;
+  z-index: 10;
+  margin: 10px;
+  .options-dropdown {
+    background-color: white;
+    position: absolute;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0px 3px 10px lightgrey;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    .option {
+      cursor: pointer;
+      padding: 5px 10px;
+      &:hover {
+        background-color: rgb(241, 239, 239);
+      }
+      &.option-active {
+        background-color: lightgray;
+      }
+    }
+  }
+}
