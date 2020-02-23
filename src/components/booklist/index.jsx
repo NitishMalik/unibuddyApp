@@ -8,7 +8,7 @@ const BooksList = ({ books }) => (
     {books && books.length > 0 ? (
       books.map(({ id, ...otherProps }) => <Book key={id} {...otherProps} />)
     ) : (
-      <p> No Books </p>
+      <div> No Books Selected</div>
     )}
   </div>
 );

@@ -21,7 +21,7 @@ class Search extends React.Component {
   };
 
   setSearchQuery = inputValue => {
-    this.setState({ searchQuery: inputValue });
+    this.setState({ searchQuery: inputValue, clearForm: false });
     this.props.getOptions(inputValue, this.state.noOfOptions);
   };
 
@@ -53,6 +53,7 @@ class Search extends React.Component {
           setSearchQuery={this.setSearchQuery}
           options={this.props.options}
           getSelectedOption={this.getSelectedOption}
+          clearForm={this.state.clearForm}
         />
         <input type="submit" className="search-btn" />
       </form>

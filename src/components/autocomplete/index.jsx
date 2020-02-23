@@ -62,7 +62,7 @@ class AutoComplete extends React.Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.clearForm != this.props.clearForm && nextProps.clearForm) {
+    if (nextProps.clearForm !== this.props.clearForm && nextProps.clearForm) {
       this.setState({ inputVal: "" });
     }
     return true;
